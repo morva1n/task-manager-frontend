@@ -11,15 +11,13 @@ export const getTasks = async ()=> {
     } catch (error) {
         console.error(error);
     }
-}
+}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
 
-const text1 = 'edededed'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-
-export const addTask = async()=>{
+export const addTask = async(text)=>{
     try{
         const response = await axios.post(
             "http://localhost:4444/tasks",
-            {name: text1}
+            {name: text}
         );
 
         return response.data;
@@ -30,14 +28,12 @@ export const addTask = async()=>{
     }
 }
 
-const text2 = 'gggg'
-const id = 5;
 
-export const changeTask = async()=>{
+export const changeTask = async(text ,id)=>{
     try{
         const response = await axios.patch(
             `http://localhost:4444/tasks/${id}`,
-            {name: text2}
+            {name: text}
         );
         return response.data;
     } catch(error){
@@ -45,12 +41,11 @@ export const changeTask = async()=>{
     }
 }
 
-const id2 = 17;
 
-export const deleteTask = async() =>{
+export const deleteTask = async(id) =>{
     try{
         const response = await axios.delete(
-            `http://localhost:4444/tasks/${id2}`
+            `http://localhost:4444/tasks/${id}`
         );
     } catch(error){
         console.log(error)
