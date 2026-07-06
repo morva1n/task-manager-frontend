@@ -13,11 +13,11 @@ export const getTasks = async ()=> {
     }
 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
 
-export const addTask = async(text)=>{
+export const addTask = async({name, description})=>{
     try{
         const response = await axios.post(
             "http://localhost:4444/tasks",
-            {name: text}
+            {name: name, description: description}
         );
 
         return response.data;

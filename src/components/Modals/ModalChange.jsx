@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as data from '../data.js'
+import * as data from '../../data.js'
 
 export const ModalChange = ({isModalChangeOpen, setIsModalChangeOpen, idTask, loadTasks}) => {
   const [inputValue, setInputValue] = useState('');
