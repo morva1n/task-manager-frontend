@@ -1,20 +1,23 @@
 import './style.css'
 import * as data from '../data.js'
+import { formattedDate } from '../formattedDate.js';
 
 
 
-export const Task = ({tasks, created_at, setIsModalDeleteOpen, setIsModalChangeOpen, setIdTask}) =>{
+export const Task = ({tasks, setIsModalDeleteOpen, setIsModalChangeOpen, setIdTask, loadTasks}) =>{
     return(
         <div className="task">
-            <p>{tasks.name}</p>
-            <span>{created_at}</span>
+            <h4>{tasks.name}</h4>
+            <p>{tasks.description}</p>
+            <span>{formattedDate(tasks.created_at)}</span>
             <button onClick={() =>{
-                setIsModalChangeOpen(true)
                 setIdTask(tasks.id)
+                setIsModalChangeOpen(true)
+                
             } }>change</button>
             <button onClick={() =>{
-                setIsModalDeleteOpen(true)
                 setIdTask(tasks.id)
+                setIsModalDeleteOpen(true)
             } }>delete</button>
         </div>
     )

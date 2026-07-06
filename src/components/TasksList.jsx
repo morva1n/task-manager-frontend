@@ -1,5 +1,4 @@
 import * as data from '../data.js'
-import { formattedDate } from './formattedDate.js';
 import { Task } from './Task';
 import "./style.css"
 import { useState, useEffect } from 'react';
@@ -11,9 +10,10 @@ const tasks = await data.getTasks();
 
 export const TasksList = () =>{
     const [tasks, setTasks] = useState([]);
-    const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
     const [isModalChangeOpen, setIsModalChangeOpen] = useState(false);
+
     const [idTask, setIdTask] = useState(0);
 
     useEffect(() => {
@@ -26,10 +26,10 @@ export const TasksList = () =>{
     };
     return(
         <div className="tasks__list">
-            <ModalDelete isModalDeleteOpen={isModalDeleteOpen} setIsModalDeleteOpen={setIsModalDeleteOpen} idTask={idTask} />
-            <ModalChange isModalChangeOpen={isModalChangeOpen} setIsModalChangeOpen={setIsModalChangeOpen} idTask={idTask} />
+            <ModalDelete isModalDeleteOpen={isModalDeleteOpen} setIsModalDeleteOpen={setIsModalDeleteOpen} idTask={idTask} loadTasks={loadTasks} />
+            <ModalChange isModalChangeOpen={isModalChangeOpen} setIsModalChangeOpen={setIsModalChangeOpen} idTask={idTask} loadTasks={loadTasks} />
             
-            {tasks.map(item => !item.finished? <Task key={item.id} tasks={item} created_at={formattedDate(item.created_at)} setIsModalDeleteOpen={setIsModalDeleteOpen} setIsModalChangeOpen={setIsModalChangeOpen} setIdTask={setIdTask} /> :null
+            {tasks.map(item => !item.finished? <Task key={item.id} tasks={item} setIsModalDeleteOpen={setIsModalDeleteOpen} setIsModalChangeOpen={setIsModalChangeOpen} setIdTask={setIdTask}/> :null
             )}
             <button onClick={async () =>{
                 await data.addTask();

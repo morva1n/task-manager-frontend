@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import * as data from '../data.js'
-const value = document.querySelector('.value')
-console.log(value)
 
-export const ModalChange = ({isModalChangeOpen, setIsModalChangeOpen, idTask}) => {
+export const ModalChange = ({isModalChangeOpen, setIsModalChangeOpen, idTask, loadTasks}) => {
   const [inputValue, setInputValue] = useState('');
-  const handleChange = () => {
-    data.changeTask(inputValue, idTask);
+  const handleChange = async () => {
+    await data.changeTask(inputValue, idTask);
+    await loadTasks();
     setIsModalChangeOpen(false);
   };
   return (

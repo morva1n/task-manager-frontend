@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import * as data from '../data.js'
 
-export const ModalDelete = ({isModalDeleteOpen, setIsModalDeleteOpen, idTask}) => {
-  const handleDelete = () => {
-    data.deleteTask(idTask);
+export const ModalDelete = ({isModalDeleteOpen, setIsModalDeleteOpen, idTask, loadTasks}) => {
+  const handleDelete = async () => {
+    await data.deleteTask(idTask);
+    await loadTasks();
     setIsModalDeleteOpen(false);
   };
 
